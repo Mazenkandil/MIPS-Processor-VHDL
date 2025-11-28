@@ -33,14 +33,11 @@ result <= a and b      when aluop ="0000" else
 			 a + b        when aluop ="0010" else
 			 a - b        when aluop ="0110" else
 			 not(a or b)  when aluop ="1100" else
-			 x"00000001" when aluop = "0111" and ( a < b ) and b(31) /= a(31) else
-			 x"00000001" when aluop = "0111" and ( a < b ) and b(31)= a(31) else
+			 x"00000001" when aluop = "0111" and ( a < b ) else
 			 x"00000000";
 			 
 dataout <= STD_LOGIC_VECTOR(result);
 zflag <= '1' 
-when (result= x"00000000" and 
-(aluop ="0000" or aluop ="0001" or aluop="0010" or aluop ="0110" or aluop ="1100" or aluop ="0111") )
-else '0';
+when result= x"00000000" else '0';
 			 
 end Behavioral;
